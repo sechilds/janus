@@ -69,7 +69,10 @@ set visualbell
 set guioptions-=T
 
 " Default gui color scheme
-color ir_black
+colorscheme vibrantink
+set anti
+set lines=999 columns=84
+set guioptions=egmrt
 
 " ConqueTerm wrapper
 function StartTerm()
