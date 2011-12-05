@@ -1,3 +1,8 @@
+" Include user's local pre .vimrc config
+if filereadable(expand("~/.vimrc.pre"))
+  source ~/.vimrc.pre
+endif
+
 set nocompatible
 set noswapfile
 
@@ -86,6 +91,10 @@ map <Leader><Leader> :ZoomWin<CR>
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
+
+" Gundo configuration
+nmap <F5> :GundoToggle<CR>
+imap <F5> <ESC>:GundoToggle<CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -185,6 +194,11 @@ function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
 map ,s :call StripWhitespace ()<CR>
+
+if has("gui_running")
+  " Automatically resize splits when resizing MacVim window
+  autocmd VimResized * wincmd =
+endif
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
